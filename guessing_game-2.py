@@ -15,11 +15,14 @@ def start_game():
             try: 
                 player_guess = int(input("> "))
                 if player_guess < 0 or player_guess > 100:
-                    raise ValueError
-            except ValueError as err:
-                print("Sorry invalid guess, please choose a number between 1 and 100, tyr again".format(err))
-            else:
-                print("")
+                    raise Exception(
+                "Sorry invalid guess, please choose a number between 1 and 100, tyr again")
+            except ValueError:
+                print("Please enter a whole number")
+                continue
+            except Exception as e:
+                 print(f"{e}")
+                 continue
             if player_guess > answer:
                 print("Too high, try again")
                 number_of_guesses.append(player_guess)
