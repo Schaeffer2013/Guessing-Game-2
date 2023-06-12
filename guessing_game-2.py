@@ -7,12 +7,21 @@ from statistics import mean, median, mode, multimode
 def start_game():
 
     print("Hello, Player, please choose a number between 0 and 100")
-    print("Current high score is {}".format(len(player_guess)))
+    
+         
 
     answer = random.randint(0, 100)
     number_of_guesses = []
     attempt_count = 0
     high_score = []
+    player_guess = []
+
+    print("Current high score is {}".format(len(player_guess)))
+    if len(high_score) <1:
+         print("Currently no high score recorded")
+    else:
+         print("Current high score is {} attempts" .format(min(high_score)))
+
     while attempt_count!= 0:
         while answer:
             try: 
@@ -36,7 +45,7 @@ def start_game():
                 continue
                 attempt_count +=1
             else:
-                print(f"That is correct, you guessed the right number in "{}" attempt(s), great job!".format(len(number_of_guesses)))
+                print(f'That is correct, you guessed the right number in "{len(number_of_guesses)}" attempt(s), great job!'.format(len(number_of_guesses)))
                 high_score.append(len(player_guess))
                 print("Here are your statistics for the game")
                 min_number = min(number_of_guesses)
