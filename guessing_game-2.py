@@ -67,7 +67,7 @@ def start_game():
                     start_game()
         elif proceed.lower() == 'n':
                 print("Thanks for trying the number guessing game, hope you enjoyed it!")
-                quit()
+            
                         
         else: 
                 print("Sorry that was a invalid responce, please enter a Y or N")
