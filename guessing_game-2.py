@@ -61,27 +61,18 @@ def start_game():
                 print(f"Your mode is:    {player_mode}")
 
                  
-
-
                 print("Would you like to play again? Y/N    ")
                 proceed = input()
-                while proceed:
-                    try:
-                      if proceed.lower() == 'y':
-                        start_game()
-                      elif proceed.lower() == 'n':
-                          print("Thanks for trying the number guessing game, hope you enjoyed it!")
-                          quit
+        if proceed.lower() == 'y':
+                    start_game()
+        elif proceed.lower() == 'n':
+                print("Thanks for trying the number guessing game, hope you enjoyed it!")
+                quit()
                         
-                      else: 
-                          raise Exception("Sorry that is a invalid response")
-                    except ValueError:
-                         print("Please enter a Y or N")
-                         continue
-                    except Exception as e:
-                           print(f"{e}")
-                           continue                 
-    
+        else: 
+                print("Sorry that was a invalid responce, please enter a Y or N")
+                continue
+               
 
     
 
