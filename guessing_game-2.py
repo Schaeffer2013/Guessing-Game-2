@@ -59,23 +59,22 @@ def start_game():
                 print(f"Your median is:    {player_median}")
                 player_mode = mode(guesses_list)
                 print(f"Your mode is:    {player_mode}")
-
-                 
-                print("Would you like to play again? Y/N    ")
-                proceed = input()
-        if proceed.lower() == 'y':
-                    start_game()
-        elif proceed.lower() == 'n':
-                print("Thanks for trying the number guessing game, hope you enjoyed it!")
-            
-                        
-        else: 
-                print("Sorry that was a invalid responce, please enter a Y or N")
-                continue
+                replay_game()
+                break
+def replay_game():
+    while True:
+        proceed = input("Would you like to play again? Y/N   ")
+        if proceed.lower() == 'y' :
+                start_game()
+        elif proceed.lower() == 'n' :
+                print(
+                      "Thanks for trying the number guessing game, hope you enjoyed it!")
+                break
+        else:
+            print("Sorry that was a invalid response, please enter a Y or N")
                
 
     
-
 start_game()
 
 
