@@ -1,33 +1,33 @@
-import math
 import random
-import sys
-from statistics import mean, median, mode, multimode
+from statistics import mean, median, mode
+
+high_score = 0 
+guesses_list = []
 
 
 def start_game():
+    global high_score
+    global guesses_list
 
     print("Hello, Player, please select a number between 0 and 100")
     
          
 
     answer = random.randint(0, 100)
-    number_of_guesses = []
     attempt_count = 0
-    high_score = []
-    player_guess = []
 
-    if len(high_score) <1:
+    if high_score < 1:
         print("Currently no high score recorded")
     else:
-        print(f'Current highs score is "{len(number_of_guesses)}" attempts' .format(min(high_score)))
+        print(f'Current highs score is "{high_score}" attempts')
         print("Choose a number between 0 and 100")
 
     
     while True:
-        try: 
+        try:
                  player_guess = int(input("> "))
                  if player_guess < 0 or player_guess > 100:
-                    raise Exception("Sorry invalid guess, please choose a number between 1 and 100, tyr again")
+                    raise Exception("Sorry invalid guess, please choose a number between 0 and 100, tyr again")
         except ValueError:
                 print("Please enter a whole number")
                 continue
@@ -36,27 +36,29 @@ def start_game():
                  continue
         if player_guess > answer:
                 print("Too high, try again")
-                number_of_guesses.append(player_guess)
+                attempt_count +=1
                 continue
         elif player_guess < answer:
                 print("Too low, try again")
-                number_of_guesses.append(player_guess)
-                continue
                 attempt_count +=1
+                continue
         else:
-                print(f'That is correct, you guessed the right number in "{len(number_of_guesses)}" attempt(s), great job!'.format(len(number_of_guesses)))
-                high_score.append(len(number_of_guesses))
+                attempt_count +=1
+                print(f'That is correct, you guessed the right number in "{attempt_count}" attempt(s), great job!')
+                guesses_list.append(attempt_count)
+                if attempt_count > high_score:
+                    high_score = attempt_count
                 print("Here are your statistics for the game")
-                min_number = min(number_of_guesses)
-                print(f"The lowest number you guessed was:   {min_number}")
-                max_number = max(number_of_guesses)
-                print(f"The highest number you guessed was:    {max_number}")
-                player_mean = mean(number_of_guesses)
-                print(f"The average of all your guesses is:    {player_guess}")
-                player_median = median(number_of_guesses)
-                print(f"The middle number you guessed was:    {player_median}")
-                player_mode = mode(number_of_guesses)
-                print(f"The most frequent number you guessed was:    {player_mode}")
+                min_number = min(guesses_list)
+                print(f"Your min is:   {min_number}")
+                max_number = max(guesses_list)
+                print(f"Your max is:    {max_number}")
+                player_mean = mean(guesses_list)
+                print(f"Your total average is:    {player_mean}")
+                player_median = median(guesses_list)
+                print(f"Your median is:    {player_median}")
+                player_mode = mode(guesses_list)
+                print(f"Your mode is:    {player_mode}")
 
                  
 
@@ -64,13 +66,21 @@ def start_game():
                 print("Would you like to play again? Y/N    ")
                 proceed = input()
                 while proceed:
-                            if proceed.lower() == 'y':
-                                start_game()
-                            elif proceed.lower() == 'n':
-                                break
-                print("Thanks for trying the number guessing game, hope you enjoyed it!")
-                quit
-                 
+                    try:
+                      if proceed.lower() == 'y':
+                        start_game()
+                      elif proceed.lower() == 'n':
+                          print("Thanks for trying the number guessing game, hope you enjoyed it!")
+                          quit
+                        
+                      else: 
+                          raise Exception("Sorry that is a invalid response")
+                    except ValueError:
+                         print("Please enter a Y or N")
+                         continue
+                    except Exception as e:
+                           print(f"{e}")
+                           continue                 
     
 
     
