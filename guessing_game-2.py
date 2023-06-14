@@ -1,7 +1,7 @@
 import random
 from statistics import mean, median, mode
 
-high_score = 0 
+high_score = 200 
 guesses_list = []
 
 
@@ -16,7 +16,7 @@ def start_game():
     answer = random.randint(0, 100)
     attempt_count = 0
 
-    if high_score < 1:
+    if high_score == 200:
         print("Currently no high score recorded")
     else:
         print(f'Current highs score is "{high_score}" attempts')
@@ -46,9 +46,9 @@ def start_game():
                 attempt_count +=1
                 print(f'That is correct, you guessed the right number in "{attempt_count}" attempt(s), great job!')
                 guesses_list.append(attempt_count)
-                if attempt_count > high_score:
+                if attempt_count < high_score:
                     high_score = attempt_count
-                print("Here are your statistics for the game")
+                print("Here are your statistics for the game(s) you have played")
                 min_number = min(guesses_list)
                 print(f"Your min is:   {min_number}")
                 max_number = max(guesses_list)
